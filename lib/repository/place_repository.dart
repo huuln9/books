@@ -1,7 +1,9 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:place/utils/abs_repository.dart';
-import 'package:place/src/models/place.dart';
+import 'package:place/models/place.dart';
+import 'package:utils/src/repository/abs_repository.dart';
 
 enum PlaceStatus { initial, success, failure }
 

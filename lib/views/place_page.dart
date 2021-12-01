@@ -2,20 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:place/src/repository/place_repository.dart';
-import 'package:place/src/blocs/place_bloc.dart';
-import 'package:place/src/views/place_list_page.dart';
+import 'package:place/repository/place_repository.dart';
+import 'package:place/blocs/place_bloc.dart';
+import 'package:place/views/place_list_page.dart';
 import 'package:utils/src/blocs/authentication/authentication_bloc.dart';
 import 'package:utils/src/blocs/configuration/configuration_bloc.dart';
 
 class PlacePage extends StatelessWidget {
-  final String utilitiesName;
-  final String utilitiesTagId;
+  final String placeName;
+  final String placeTagId;
 
   const PlacePage({
     Key? key,
-    required this.utilitiesName,
-    required this.utilitiesTagId,
+    required this.placeName,
+    required this.placeTagId,
   }) : super(key: key);
 
   // static Route route(String utilitiesName, String utilitiesTagId) {
@@ -29,19 +29,17 @@ class PlacePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var apiGatewayURL =
-        context.read<ConfigurationBloc>().state.config['apiGatewayURL'];
-
     return Scaffold(
       body: BlocProvider(
         create: (context) => PlaceBloc(
           utilitiesRepository: PlaceRepository(
-            apiGatewayURL: apiGatewayURL,
-            placeTagId: utilitiesTagId,
+            apiGatewayURL:
+                context.read<ConfigurationBloc>().state.config['apiGatewayURL'],
+            placeTagId: placeTagId,
           ),
           accessToken: context.read<AuthenticationBloc>().state.accessToken,
         )..add(GetListUtilitiesRequested()),
-        child: PlaceListPage(placeName: utilitiesName),
+        child: PlaceListPage(placeName: placeName),
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:place/src/repository/place_repository.dart';
-import 'package:place/src/blocs/place_bloc.dart';
-import 'package:place/src/models/place.dart';
-import 'package:place/src/views/place_detail_page.dart';
+import 'package:place/repository/place_repository.dart';
+import 'package:place/blocs/place_bloc.dart';
+import 'package:place/models/place.dart';
+import 'package:place/views/place_detail_page.dart';
 
 class PlaceListPage extends StatefulWidget {
   final String placeName;
